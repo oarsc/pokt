@@ -1,35 +1,29 @@
 package org.oar.idle.ui
 
+import kotlinx.browser.localStorage
+import org.oar.idle.constants.ExportId.pokemonData
 import org.oar.idle.custom.HTMLObservableElement
-import org.oar.idle.custom.style
-import org.oar.idle.ui.boilerplate.ButtonDiv
-import org.oar.idle.ui.boilerplate.InputDiv
+import org.oar.idle.ui.pokemon.PokeContainer
 import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.get
 
 class ContentDiv : HTMLObservableElement<HTMLDivElement>("div", id = "content") {
 
-    private val input: InputDiv
-    private val button: ButtonDiv
-
     init {
-        input = InputDiv()
-        button = ButtonDiv()
+        val data = read(pokemonData)!!
+
+        readDiscards().forEach {
+            data[it].discarded = true
+        }
 
         append {
-            +input
-            +button
-            +CounterElement()
+            +StaticButtons()
+            +PokeContainer(data)
+            +LeftScroller()
         }
     }
 
-    companion object {
-        init {
-            style {
-                "#content" {
-                    "textAlign" to "center"
-                    "backgroundColor" to "yellowgreen"
-                }
-            }
-        }
-    }
+    private fun readDiscards(): Array<Int> = localStorage["discards"]?.let {
+        JSON.parse<Array<Int>>(it)
+    } ?: emptyArray()
 }

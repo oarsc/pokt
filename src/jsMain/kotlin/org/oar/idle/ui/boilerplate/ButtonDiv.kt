@@ -12,7 +12,6 @@ class ButtonDiv(
         element.apply {
             textContent = "SUBMIT"
             onclick = { window.alert("HOLA MI GENTE LATINO: "+ read(inputId)) }
-
         }
     }
 }

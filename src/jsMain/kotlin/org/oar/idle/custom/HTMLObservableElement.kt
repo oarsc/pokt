@@ -28,15 +28,16 @@ open class HTMLObservableElement<E : HTMLElement>(
             className?.let { this.className = it }
             id?.let { this.id = it }
         }
-        Promise.resolve(Unit).then { render() }
+        Promise.resolve(Unit).then { render(-1) }
     }
 
     protected fun <T> renderProperty(
         initial: T,
+        identifier: Int = -1,
         onChange: HTMLObservableElement<E>.(old: T, new: T) -> Unit = { _, _ -> }
     ): ReadWriteProperty<HTMLObservableElement<E>, T> = observable(initial) { old, new ->
         onChange(old, new)
-        update()
+        update(identifier)
     }
 
     fun append(build: ElementBuilder.() -> Unit) {
@@ -83,8 +84,8 @@ open class HTMLObservableElement<E : HTMLElement>(
         }
     }
 
-    fun update() = render()
-    protected open fun render() {}
+    private fun update(identifier: Int) = render(identifier)
+    protected open fun render(identifier: Int) {}
 
     companion object {
         private val mutableMap = mutableMapOf<ExportId<*>, () -> Any>()
