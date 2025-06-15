@@ -25,9 +25,9 @@ class LeftScroller : HTMLObservableElement<HTMLDivElement>("div", id = "scroller
 
                 if (btn == 4) {} // middle click
                 else if (btn == 2) { // right click
-                    scrollScreen(-384.0)
+                    scrollScreen(-SCROLL_SIZE)
                 } else {
-                    scrollScreen(384.0)
+                    scrollScreen(SCROLL_SIZE)
                 }
 
                 ev.stopPropagation()
@@ -46,14 +46,16 @@ class LeftScroller : HTMLObservableElement<HTMLDivElement>("div", id = "scroller
         window.scrollTo(
             ScrollToOptions(
                 top = window.scrollY + value,
-                behavior= ScrollBehavior.SMOOTH
+                behavior = ScrollBehavior.SMOOTH
             )
         )
     }
 
     companion object {
-        private const val SPEED = 0.5
-        private const val MAX_SIZE = 40
+        private const val SCROLL_SIZE = 96.0 * 4
+        private const val SCROLLER_APPEAR_SPEED = 0.5
+        private const val SCROLLER_MIN_SIZE = 1
+        private const val SCROLLER_MAX_SIZE = 40
         init {
             style {
                 "#scroller" {
@@ -61,23 +63,23 @@ class LeftScroller : HTMLObservableElement<HTMLDivElement>("div", id = "scroller
                     "top" to "0"
                     "bottom" to "0"
                     "left" to "0"
-                    "width" to "1px"
+                    "width" to "${SCROLLER_MIN_SIZE}px"
                     "backgroundColor" to "#244464"
                     "opacity" to 0
-                    "transition" to "width ${SPEED}s, opacity ${SPEED/2}s"
+                    "transition" to "width ${SCROLLER_APPEAR_SPEED}s, opacity ${SCROLLER_APPEAR_SPEED/2}s"
                     "boxShadow" to "inset -6px 0 5px -5px black"
                     "cursor" to "pointer"
                 }
                 "#scroller.expanded" {
-                    "width" to "${MAX_SIZE}px"
+                    "width" to "${SCROLLER_MAX_SIZE}px"
                     "opacity" to 1
                 }
 
                 "body" {
-                    "transition" to "margin-left ${SPEED}s"
+                    "transition" to "margin-left ${SCROLLER_APPEAR_SPEED}s"
                 }
                 "body.expanded" {
-                    "margin-left" to "${MAX_SIZE}px"
+                    "margin-left" to "${SCROLLER_MAX_SIZE}px"
                 }
             }
         }

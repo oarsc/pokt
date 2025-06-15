@@ -12,7 +12,7 @@ class PokeImage(
     init {
         element.apply {
             src = "./img/${pokemonData.key}.png"
-            title = pokemonData.name
+            title = pokemonData.name + " (#${pokemonData.gen})"
 
             onerror = { _, _, _, _, _ ->
                 style.display = "none"
@@ -24,6 +24,9 @@ class PokeImage(
     companion object {
         init {
             style {
+                ".pk-img" {
+                    "margin" to "5px 0"
+                }
                 ".zoom .pk-img" {
                     // original 96x96
                     "width" to "192px"

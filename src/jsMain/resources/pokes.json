@@ -231,7 +231,7 @@
   { "number": 471, "key": "GLACEON", "name": "Glaceon", "types": [ "ICE" ] },
   { "number": 700, "key": "SYLVEON", "name": "Sylveon", "types": [ "FAIRY" ] },
   { "number": 137, "key": "PORYGON", "name": "Porygon", "types": [ "NORMAL" ] },
-  { "number": 137, "key": "PORYGON-2", "name": "Porygon2", "types": [ "NORMAL" ] },
+  { "number": 233, "key": "PORYGON-2", "name": "Porygon2", "types": [ "NORMAL" ] },
   { "number": 474, "key": "PORYGON-Z", "name": "Porygon-Z", "types": [ "NORMAL" ] },
   { "number": 138, "key": "OMANYTE", "name": "Omanyte", "types": [ "ROCK", "WATER" ] },
   { "number": 139, "key": "OMASTAR", "name": "Omastar", "types": [ "ROCK", "WATER" ] },
@@ -355,6 +355,7 @@
   { "number": 231, "key": "PHANPY", "name": "Phanpy", "types": [ "GROUND" ] },
   { "number": 232, "key": "DONPHAN", "name": "Donphan", "types": [ "GROUND" ] },
   { "number": 234, "key": "STANTLER", "name": "Stantler", "types": [ "NORMAL" ] },
+  { "number": 899, "key": "WYRDEER", "name": "Wyrdeer", "types": [ "NORMAL", "PSYCHIC" ] },
   { "number": 235, "key": "SMEARGLE", "name": "Smeargle", "types": [ "NORMAL" ] },
   { "number": 241, "key": "MILTANK", "name": "Miltank", "types": [ "NORMAL" ] },
   { "number": 243, "key": "RAIKOU", "name": "Raikou", "types": [ "ELECTRIC" ] },
@@ -1153,10 +1154,9 @@
   { "number": 898, "key": "CALYREX", "name": "Calyrex", "types": [ "PSYCHIC", "GRASS" ] },
   { "number": 898, "key": "CALYREX-1", "name": "Calyrex (Ice Rider)", "types": [ "PSYCHIC", "ICE" ] },
   { "number": 898, "key": "CALYREX-2", "name": "Calyrex (Shadow Rider)", "types": [ "PSYCHIC", "GHOST" ] },
-  { "number": 899, "key": "WYRDEER", "name": "Wyrdeer", "types": [ "NORMAL", "PSYCHIC" ] },
   { "number": 900, "key": "KLEAVOR", "name": "Kleavor", "types": [ "BUG", "ROCK" ] },
   { "number": 902, "key": "BASCULEGION", "name": "Basculegion (Male)", "types": [ "WATER", "GHOST" ] },
-  { "number": 902, "key": "BASCULEGION-1", "name": "Basculegion (Female", "types": [ "WATER", "GHOST" ] },
+  { "number": 902, "key": "BASCULEGION-1", "name": "Basculegion (Female)", "types": [ "WATER", "GHOST" ] },
   { "number": 906, "key": "SPRIGATITO", "name": "Sprigatito", "types": [ "GRASS" ] },
   { "number": 907, "key": "FLORAGATO", "name": "Floragato", "types": [ "GRASS" ] },
   { "number": 908, "key": "MEOWSCARADA", "name": "Meowscarada", "types": [ "GRASS", "DARK" ] },
@@ -1281,7 +1281,5 @@
   { "number": 1024, "key": "TERAPAGOS", "name": "Terapagos", "types": [ "NORMAL" ] },
   { "number": 1024, "key": "TERAPAGOS-1", "name": "Terapagos (Terastal Form)", "types": [ "NORMAL" ] },
   { "number": 1024, "key": "TERAPAGOS-2", "name": "Terapagos (Stellar Form)", "types": [ "NORMAL" ] },
-  { "number": 1025, "key": "PECHARUNT", "name": "Pecharunt", "types": [ "POISON", "GHOST"
-    ]
-  }
+  { "number": 1025, "key": "PECHARUNT", "name": "Pecharunt", "types": [ "POISON", "GHOST" ] }
 ]

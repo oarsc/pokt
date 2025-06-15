@@ -4,17 +4,14 @@ import kotlinx.browser.document
 import org.w3c.dom.HTMLStyleElement
 import org.w3c.dom.css.CSSStyleSheet
 
-fun style(builder: CSSBuilder.() -> Unit) {
-    val styleElement = document.createElement("style") as HTMLStyleElement
-    styleElement.type = "text/css"
-    document.head?.appendChild(styleElement)
+private val styleElement = (document.createElement("style") as HTMLStyleElement).apply {
+    type = "text/css"
+    document.head?.appendChild(this)
+}
 
+fun style(builder: CSSBuilder.() -> Unit) {
     val sheet = styleElement.sheet as CSSStyleSheet
     CSSBuilder(sheet).builder()
-
-    if (sheet.cssRules.length <= 0) {
-        styleElement.remove()
-    }
 }
 
 class CSSBuilder(private val sheet: CSSStyleSheet) {

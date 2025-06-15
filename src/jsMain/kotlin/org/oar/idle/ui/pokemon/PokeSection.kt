@@ -21,11 +21,13 @@ class PokeSection(
         init {
             style {
                 ".poke-section" {
-                    "backgroundColor" to "yellowgreen"
-                    "border-bottom" to "2px solid black"
-                }
-                ".poke-section:first-child" {
-                    "border-top" to "2px solid black"
+                    "backgroundColor" to "#ddd"
+                    "margin" to "20px 0"
+                    "padding" to "20px"
+                    "border" to "solid black"
+                    "borderWidth" to "1px 0"
+                    "borderRadius" to "5px"
+                    "lineHeight" to "0"
                 }
             }
         }

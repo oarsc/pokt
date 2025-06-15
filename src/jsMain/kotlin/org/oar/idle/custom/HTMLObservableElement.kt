@@ -3,6 +3,7 @@ package org.oar.idle.custom
 import io.nacular.doodle.utils.observable
 import kotlinx.browser.document
 import org.oar.idle.constants.ExportId.ExportId
+import org.oar.idle.constants.NotifierId.NotifierId
 import org.w3c.dom.DOMTokenList
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
@@ -88,14 +89,26 @@ open class HTMLObservableElement<E : HTMLElement>(
     protected open fun render(identifier: Int) {}
 
     companion object {
-        private val mutableMap = mutableMapOf<ExportId<*>, () -> Any>()
+        private val exportsMap = mutableMapOf<ExportId<*>, () -> Any>()
+
         fun <T: Any> expose(id: ExportId<T>, function: () -> T) {
-            mutableMap[id] = function
+            exportsMap[id] = function
         }
 
         @Suppress("UNCHECKED_CAST")
         fun <T: Any> read(id: ExportId<T>): T? {
-            return mutableMap[id]?.let { it() as T }
+            return exportsMap[id]?.let { it() as T }
+        }
+
+        private val notifierMap = mutableMapOf<NotifierId, List<() -> Unit>>()
+
+        fun listen(id: NotifierId, function: () -> Unit) {
+            val list = notifierMap[id] ?: emptyList()
+            notifierMap[id] = list + function
+        }
+
+        fun notify(id: NotifierId) {
+            notifierMap[id]?.forEach { it() }
         }
     }
 }

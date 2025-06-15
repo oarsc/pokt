@@ -2,6 +2,7 @@ package org.oar.idle.ui.pokemon
 
 import kotlinx.browser.localStorage
 import org.oar.idle.constants.ExportId.pokemonData
+import org.oar.idle.constants.NotifierId.discardModification
 import org.oar.idle.custom.HTMLObservableElement
 import org.oar.idle.custom.style
 import org.oar.idle.model.PokemonData
@@ -16,15 +17,14 @@ class PokeDiv(
 
     init {
         element.apply {
-            pokemonData.setListener {
-                classList.toggle("discarded", it)
-            }
             if (pokemonData.discarded) {
                 classList.add("discarded")
             }
             onclick = {
                 pokemonData.discarded = !pokemonData.discarded
+                classList.toggle("discarded", pokemonData.discarded)
                 saveDiscards()
+                notify(discardModification)
             }
         }
 

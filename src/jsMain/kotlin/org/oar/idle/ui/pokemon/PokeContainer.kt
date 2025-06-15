@@ -1,5 +1,6 @@
 package org.oar.idle.ui.pokemon
 
+import org.oar.idle.custom.Constants.POKEMON_BREAKS
 import org.oar.idle.custom.HTMLObservableElement
 import org.oar.idle.custom.style
 import org.oar.idle.model.PokemonData
@@ -28,13 +29,11 @@ class PokeContainer(
     }
 
     companion object {
-        private val POKEMON_BREAKS = listOf(152, 252, 387, 495, 650, 722, 810, 906)
-
         init {
             style {
                 "#poke-content" {
                     "margin" to "50px auto"
-                    "max-width" to "960px"
+                    "max-width" to "1000px"
                 }
             }
         }

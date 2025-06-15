@@ -1,5 +1,7 @@
 package org.oar.idle.model
 
+import org.oar.idle.custom.Constants.POKEMON_BREAKS
+
 external interface PokemonDataRaw {
     val number: Int
     val key: String
@@ -13,16 +15,10 @@ data class PokemonData(
     val name: String,
     val types: List<Type>
 ) {
-    private val discardListeners = mutableListOf<(Boolean) -> Unit>()
     var discarded: Boolean = false
-        set(value) {
-            field = value
-            discardListeners.forEach { it(value) }
-        }
-
-    fun setListener(listener: (Boolean) -> Unit) {
-        discardListeners.add(listener)
-    }
+    val gen = POKEMON_BREAKS
+        .indexOfFirst { number < it }
+        .let { if (it == -1) POKEMON_BREAKS.size else it } + 1
 
     companion object {
         fun PokemonDataRaw.parse() = PokemonData(
@@ -34,8 +30,4 @@ data class PokemonData(
 
         fun Array<PokemonDataRaw>.parse() = map { it.parse() }.toTypedArray()
     }
-}
-
-enum class Type {
-    NORMAL, FIRE, WATER, GRASS, ELECTRIC, ICE, BUG, ROCK, GROUND, FLYING, POISON, FIGHTING, PSYCHIC, GHOST, DRAGON, DARK, STEEL, FAIRY
 }
