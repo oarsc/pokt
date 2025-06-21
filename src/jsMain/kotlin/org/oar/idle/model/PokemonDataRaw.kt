@@ -6,7 +6,7 @@ external interface PokemonDataRaw {
     val number: Int
     val key: String
     val name: String
-    val types: List<Type>
+    val types: Array<String>
 }
 
 data class PokemonData(
@@ -25,7 +25,7 @@ data class PokemonData(
             number = number,
             key = key,
             name = name,
-            types = types
+            types = types.map(Type::valueOf)
         )
 
         fun Array<PokemonDataRaw>.parse() = map { it.parse() }.toTypedArray()

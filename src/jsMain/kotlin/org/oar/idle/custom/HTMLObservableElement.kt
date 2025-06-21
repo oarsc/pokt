@@ -4,6 +4,7 @@ import io.nacular.doodle.utils.observable
 import kotlinx.browser.document
 import org.oar.idle.constants.ExportId.ExportId
 import org.oar.idle.constants.NotifierId.NotifierId
+import org.oar.idle.custom.Utils.createElement
 import org.w3c.dom.DOMTokenList
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
@@ -16,8 +17,7 @@ open class HTMLObservableElement<E : HTMLElement>(
     className: String? = null,
     id: String? = null
 ) {
-    @Suppress("UNCHECKED_CAST")
-    val element = document.createElement(tagName) as E
+    val element = createElement<E>(tagName)
 
     private val _children = mutableListOf<HTMLObservableElement<*>>()
     val children: List<HTMLObservableElement<*>> = _children
@@ -59,7 +59,7 @@ open class HTMLObservableElement<E : HTMLElement>(
         val classList: DOMTokenList get() = element.classList
 
         operator fun String.invoke(build: ElementBuilder.() -> Unit) {
-            val subElement = document.createElement(this)
+            val subElement = createElement<HTMLElement>(this)
             appendChild(subElement)
 
             ElementBuilder(subElement::appendChild, subElement).build()

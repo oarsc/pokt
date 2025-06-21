@@ -5,12 +5,13 @@ import org.oar.idle.custom.Utils.createElement
 import org.oar.idle.custom.Utils.setInterval
 import org.oar.idle.custom.style
 import org.w3c.dom.HTMLElement
+import org.w3c.dom.HTMLSpanElement
 
 class CounterElement(
 ): HTMLObservableElement<HTMLElement>("div", id = "counter") {
 
     private var energy: Int by renderProperty(0, identifier = 1)
-    private val textElement = createElement("span")
+    private val textElement = createElement<HTMLSpanElement>("span")
 
     init {
         append {

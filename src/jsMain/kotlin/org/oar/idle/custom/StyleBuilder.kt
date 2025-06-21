@@ -1,10 +1,11 @@
 package org.oar.idle.custom
 
 import kotlinx.browser.document
+import org.oar.idle.custom.Utils.createElement
 import org.w3c.dom.HTMLStyleElement
 import org.w3c.dom.css.CSSStyleSheet
 
-private val styleElement = (document.createElement("style") as HTMLStyleElement).apply {
+private val styleElement = createElement<HTMLStyleElement>("style").apply {
     type = "text/css"
     document.head?.appendChild(this)
 }

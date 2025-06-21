@@ -2,6 +2,7 @@ package org.oar.idle.ui
 
 import org.oar.idle.custom.HTMLObservableElement
 import org.oar.idle.custom.style
+import org.oar.idle.ui.stats.Stats
 import org.w3c.dom.HTMLDivElement
 
 object FixedMenu : HTMLObservableElement<HTMLDivElement>("div", id = "fixed-menu") {
