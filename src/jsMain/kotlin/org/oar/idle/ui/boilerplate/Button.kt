@@ -7,13 +7,13 @@ import org.w3c.dom.events.MouseEvent
 
 class Button(
     src: String,
-    alt: String
+    title: String
 ): HTMLObservableElement<HTMLImageElement>("img", "btn") {
     var onclick: ((MouseEvent) -> Unit)? = null
 
     init {
         element.src = src
-        element.alt = alt
+        element.title = title
         element.onclick = {
             onclick?.invoke(it)
         }

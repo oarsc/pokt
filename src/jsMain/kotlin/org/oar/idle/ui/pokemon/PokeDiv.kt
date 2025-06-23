@@ -47,6 +47,10 @@ class PokeDiv(
                     "cursor" to "pointer"
                     "display" to "inline-block"
                 }
+                ".pokemon-panel:hover" {
+                    "backgroundColor" to "#00000010"
+                    "borderRadius" to "5px"
+                }
                 ".pokemon-panel.discarded" {
                     "display" to "none"
                 }

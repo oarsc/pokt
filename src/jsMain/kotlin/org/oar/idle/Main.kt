@@ -16,6 +16,7 @@ fun main() {
     style {
         "body" {
             "margin" to "0"
+            "fontFamily" to "sans"
         }
     }
 

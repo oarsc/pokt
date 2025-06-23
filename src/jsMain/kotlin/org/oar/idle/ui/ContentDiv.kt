@@ -17,6 +17,7 @@ class ContentDiv : HTMLObservableElement<HTMLDivElement>("div", id = "content") 
         }
 
         append {
+            +Header
             +FixedMenu
             +PokeContainer(data)
             +LeftScroller()

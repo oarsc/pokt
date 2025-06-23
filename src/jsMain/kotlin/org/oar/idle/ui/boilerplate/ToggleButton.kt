@@ -6,7 +6,7 @@ import org.w3c.dom.HTMLImageElement
 
 class ToggleButton(
     src: String,
-    alt: String
+    title: String
 ): HTMLObservableElement<HTMLImageElement>("img", "toggle-btn") {
     var value = false
         set(value) {
@@ -17,7 +17,7 @@ class ToggleButton(
 
     init {
         element.src = src
-        element.alt = alt
+        element.title = title
         element.onclick = {
             value = !value
             onchange?.invoke(value)

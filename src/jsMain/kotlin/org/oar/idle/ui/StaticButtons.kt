@@ -29,7 +29,7 @@ object StaticButtons : HTMLObservableElement<HTMLDivElement>("div", id = "button
             localStorage["restore"] = it.toString()
         }
 
-        if (localStorage["restore"] == "true") {
+        if (localStorage["restore"] != "false") {
             classList.add("restore")
             restoreBtn.value = true
         }
@@ -39,7 +39,7 @@ object StaticButtons : HTMLObservableElement<HTMLDivElement>("div", id = "button
             localStorage["zoom"] = it.toString()
         }
 
-        if (localStorage["zoom"] == "true") {
+        if (localStorage["zoom"] != "false") {
             classList.add("zoom")
             zoomBtn.value = true
         }
@@ -64,8 +64,11 @@ object StaticButtons : HTMLObservableElement<HTMLDivElement>("div", id = "button
 
         exportBtn.onclick = {
             val binary = read(pokemonData)!!.reversed().joinToString("") { if (it.discarded) "1" else "0" }.trimStart('0')
-            val code = encode(binary)
-            window.prompt("Save this code:", code)
+            if (binary.isNotEmpty()) {
+                window.prompt("Save this code:", encode(binary))
+            } else {
+                window.alert("Discard at least a pokemon")
+            }
         }
 
         append {
