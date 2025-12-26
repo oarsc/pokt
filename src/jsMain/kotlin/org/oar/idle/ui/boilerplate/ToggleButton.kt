@@ -1,26 +1,29 @@
 package org.oar.idle.ui.boilerplate
 
-import org.oar.idle.custom.HTMLObservableElement
-import org.oar.idle.custom.style
+import org.oar.idle.lib.HTMLBlock
+import org.oar.idle.lib.HTMLDefinitionConstants.IMG
+import org.oar.idle.lib.style
 import org.w3c.dom.HTMLImageElement
 
 class ToggleButton(
     src: String,
     title: String
-): HTMLObservableElement<HTMLImageElement>("img", "toggle-btn") {
+): HTMLBlock<HTMLImageElement>(IMG, "toggle-btn") {
     var value = false
         set(value) {
             field = value
             element.classList.toggle("on", value)
         }
-    var onchange: ((Boolean) -> Unit)? = null
+    var onChange: ((Boolean) -> Unit)? = null
 
     init {
-        element.src = src
-        element.title = title
-        element.onclick = {
-            value = !value
-            onchange?.invoke(value)
+        element.apply {
+            this.src = src
+            this.title = title
+            this.onclick = {
+                value = !value
+                onChange?.invoke(value)
+            }
         }
     }
 

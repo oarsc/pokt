@@ -1,17 +1,17 @@
 package org.oar.idle.ui.pokemon
 
-import org.oar.idle.custom.Constants.POKEMON_BREAKS
-import org.oar.idle.custom.HTMLObservableElement
-import org.oar.idle.custom.style
+import org.oar.idle.lib.HTMLBlock
+import org.oar.idle.lib.HTMLDefinitionConstants.DIV
+import org.oar.idle.lib.style
 import org.oar.idle.model.PokemonData
+import org.oar.idle.utils.Constants.POKEMON_BREAKS
 import org.w3c.dom.HTMLDivElement
 
 class PokeContainer(
     data: Array<PokemonData>
-) : HTMLObservableElement<HTMLDivElement>("div", id = "poke-content") {
+) : HTMLBlock<HTMLDivElement>(DIV, id = "poke-content") {
 
     init {
-
         val sections = POKEMON_BREAKS.fold(mutableListOf(data)) { res, breakPoint ->
             res.apply {
                 val list = removeLast().toList()
@@ -21,10 +21,8 @@ class PokeContainer(
             }
         }
 
-        append {
-            sections.forEach {
-                +PokeSection(it)
-            }
+        sections.forEach {
+            +PokeSection(it)
         }
     }
 

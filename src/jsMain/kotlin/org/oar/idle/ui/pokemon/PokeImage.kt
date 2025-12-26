@@ -1,13 +1,14 @@
 package org.oar.idle.ui.pokemon
 
-import org.oar.idle.custom.HTMLObservableElement
-import org.oar.idle.custom.style
+import org.oar.idle.lib.HTMLBlock
+import org.oar.idle.lib.HTMLDefinitionConstants.IMG
+import org.oar.idle.lib.style
 import org.oar.idle.model.PokemonData
 import org.w3c.dom.HTMLImageElement
 
 class PokeImage(
     private val pokemonData: PokemonData
-): HTMLObservableElement<HTMLImageElement>("img", className = "pk-img") {
+): HTMLBlock<HTMLImageElement>(IMG, className = "pk-img") {
 
     init {
         element.apply {

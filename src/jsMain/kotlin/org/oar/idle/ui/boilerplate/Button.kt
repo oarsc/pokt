@@ -1,21 +1,24 @@
 package org.oar.idle.ui.boilerplate
 
-import org.oar.idle.custom.HTMLObservableElement
-import org.oar.idle.custom.style
+import org.oar.idle.lib.HTMLBlock
+import org.oar.idle.lib.HTMLDefinitionConstants.IMG
+import org.oar.idle.lib.style
 import org.w3c.dom.HTMLImageElement
 import org.w3c.dom.events.MouseEvent
 
 class Button(
     src: String,
     title: String
-): HTMLObservableElement<HTMLImageElement>("img", "btn") {
+): HTMLBlock<HTMLImageElement>(IMG, "btn") {
     var onclick: ((MouseEvent) -> Unit)? = null
 
     init {
-        element.src = src
-        element.title = title
-        element.onclick = {
-            onclick?.invoke(it)
+        element.apply {
+            this.src = src
+            this.title = title
+            this.onclick = {
+                onclick?.invoke(it)
+            }
         }
     }
 

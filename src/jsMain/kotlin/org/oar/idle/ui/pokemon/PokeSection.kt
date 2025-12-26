@@ -1,19 +1,18 @@
 package org.oar.idle.ui.pokemon
 
-import org.oar.idle.custom.HTMLObservableElement
-import org.oar.idle.custom.style
+import org.oar.idle.lib.HTMLBlock
+import org.oar.idle.lib.HTMLDefinitionConstants.DIV
+import org.oar.idle.lib.style
 import org.oar.idle.model.PokemonData
 import org.w3c.dom.HTMLDivElement
 
 class PokeSection(
     data: Array<PokemonData>
-) : HTMLObservableElement<HTMLDivElement>("div", className = "poke-section") {
+) : HTMLBlock<HTMLDivElement>(DIV, className = "poke-section") {
 
     init {
-        append {
-            data.forEachIndexed { idx, it ->
-                +PokeDiv(it)
-            }
+        data.forEachIndexed { idx, it ->
+            +PokeDiv(it)
         }
     }
 

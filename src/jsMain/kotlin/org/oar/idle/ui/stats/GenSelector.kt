@@ -1,61 +1,62 @@
 package org.oar.idle.ui.stats
 
-import org.oar.idle.constants.ExportId.pokemonData
-import org.oar.idle.custom.HTMLObservableElement
-import org.oar.idle.custom.Utils.createElement
-import org.oar.idle.custom.style
+import org.oar.idle.lib.HTMLBlock
+import org.oar.idle.lib.HTMLDefinitionConstants.DIV
+import org.oar.idle.lib.HTMLDefinitionConstants.IMG
+import org.oar.idle.lib.HTMLDefinitionConstants.SPAN
+import org.oar.idle.lib.style
+import org.oar.idle.utils.Export.pokemonData
 import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLImageElement
-import org.w3c.dom.HTMLSpanElement
 
 class GenSelector(
-    private val ongenchange: (Int) -> Unit
-) : HTMLObservableElement<HTMLDivElement>("div", id = "gen-selector") {
+    private val onGenChange: (Int) -> Unit
+) : HTMLBlock<HTMLDivElement>(DIV, id = "gen-selector") {
 
     private var currentGen by renderProperty(0, 0)
     private val maxGen = read(pokemonData)!!.maxOf { it.gen }
 
-    private val left = createElement<HTMLImageElement>("img").apply {
-        className = "left-btn"
-        src = "./icon/left.svg"
-    }
-    private val span = createElement<HTMLSpanElement>("span")
-    private val right = createElement<HTMLImageElement>("img").apply {
-        className = "right-btn"
-        src = "./icon/right.svg"
-    }
+    private val span = SPAN()
 
     init {
-        left.onclick = {
-            if (currentGen > 0) {
-                currentGen--
+        val left = IMG("left-btn") {
+            element.apply {
+                src = "./icon/left.svg"
+                onclick = {
+                    if (currentGen > 0) {
+                        currentGen--
+                    }
+                    false
+                }
             }
-            false
         }
-        span.textContent = "All gens"
-        right.onclick = {
-            if (currentGen < maxGen) {
-                currentGen++
+        val right = IMG("right-btn") {
+            element.apply {
+                src = "./icon/right.svg"
+                onclick = {
+                    if (currentGen < maxGen) {
+                        currentGen++
+                    }
+                    false
+                }
             }
-            false
         }
 
-        append {
-            +left
-            +span
-            +right
+        span.apply {
+            -"All gens"
         }
+
+        +left
+        +span
+        +right
     }
 
     override fun render(identifier: Int) {
         when(identifier) {
             0 -> {
-                if (currentGen == 0) {
-                    span.textContent = "All gens"
-                } else {
-                    span.textContent = "Gen $currentGen"
+                span.apply {
+                    -if (currentGen == 0) "All gens" else "Gen $currentGen"
                 }
-                ongenchange(currentGen)
+                onGenChange(currentGen)
             }
         }
     }

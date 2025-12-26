@@ -1,17 +1,18 @@
 package org.oar.idle.ui.stats
 
-import org.oar.idle.constants.ExportId.pokemonData
-import org.oar.idle.constants.NotifierId.discardModification
-import org.oar.idle.custom.HTMLObservableElement
-import org.oar.idle.custom.style
+import org.oar.idle.lib.HTMLBlock
+import org.oar.idle.lib.HTMLDefinitionConstants.DIV
+import org.oar.idle.lib.style
 import org.oar.idle.model.PokemonData
 import org.oar.idle.model.Type
 import org.oar.idle.ui.boilerplate.ImageStatElement
 import org.oar.idle.ui.boilerplate.StatElement
 import org.oar.idle.ui.boilerplate.TitleStatElement
+import org.oar.idle.utils.Export.pokemonData
+import org.oar.idle.utils.Notifier.discardModification
 import org.w3c.dom.HTMLDivElement
 
-object Stats : HTMLObservableElement<HTMLDivElement>("div", id = "buttons") {
+object Stats : HTMLBlock<HTMLDivElement>(DIV, id = "buttons") {
 
     private val data = read(pokemonData)!!
 
@@ -47,28 +48,26 @@ object Stats : HTMLObservableElement<HTMLDivElement>("div", id = "buttons") {
             update()
         }
 
-        append {
-            +genSelector
-            +totalPokes
-            +normalPokes
-            +firePokes
-            +waterPokes
-            +electricPokes
-            +grassPokes
-            +icePokes
-            +fightingPokes
-            +poisonPokes
-            +groundPokes
-            +flyingPokes
-            +psychicPokes
-            +bugPokes
-            +rockPokes
-            +ghostPokes
-            +dragonPokes
-            +darkPokes
-            +steelPokes
-            +fairyPokes
-        }
+        +genSelector
+        +totalPokes
+        +normalPokes
+        +firePokes
+        +waterPokes
+        +electricPokes
+        +grassPokes
+        +icePokes
+        +fightingPokes
+        +poisonPokes
+        +groundPokes
+        +flyingPokes
+        +psychicPokes
+        +bugPokes
+        +rockPokes
+        +ghostPokes
+        +dragonPokes
+        +darkPokes
+        +steelPokes
+        +fairyPokes
 
         style {
 //                "#buttons" {

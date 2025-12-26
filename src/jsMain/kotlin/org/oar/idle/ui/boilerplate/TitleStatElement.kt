@@ -1,8 +1,7 @@
 package org.oar.idle.ui.boilerplate
 
-import org.oar.idle.custom.Utils.createElement
-import org.oar.idle.custom.style
-import org.w3c.dom.HTMLSpanElement
+import org.oar.idle.lib.HTMLDefinitionConstants.SPAN
+import org.oar.idle.lib.style
 
 class TitleStatElement(
     title: String,
@@ -10,16 +9,11 @@ class TitleStatElement(
     totalValue: Int = 0,
 ): StatElement(initValue, totalValue, "t") {
 
-    private val titleElement = createElement<HTMLSpanElement>("span")
-
     init {
-        titleElement.apply {
-            textContent = title
-            className = "title"
+        +SPAN("title") {
+            -title
         }
-        append {
-            +titleElement
-        }
+
         appendElements()
     }
 

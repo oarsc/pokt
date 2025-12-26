@@ -3,16 +3,17 @@ package org.oar.idle.ui
 import kotlinx.browser.document
 import kotlinx.browser.localStorage
 import kotlinx.browser.window
-import org.oar.idle.constants.ExportId.pokemonData
-import org.oar.idle.custom.HTMLObservableElement
-import org.oar.idle.custom.style
+import org.oar.idle.lib.HTMLBlock
+import org.oar.idle.lib.HTMLDefinitionConstants.DIV
+import org.oar.idle.lib.style
 import org.oar.idle.ui.boilerplate.Button
 import org.oar.idle.ui.boilerplate.ToggleButton
+import org.oar.idle.utils.Export.pokemonData
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.get
 import org.w3c.dom.set
 
-object StaticButtons : HTMLObservableElement<HTMLDivElement>("div", id = "buttons") {
+object StaticButtons : HTMLBlock<HTMLDivElement>(DIV, id = "buttons") {
 
     private val restoreBtn = ToggleButton("./icon/view.svg", "View hidden")
     private val zoomBtn = ToggleButton("./icon/zoom.svg", "Zoom images")
@@ -21,10 +22,9 @@ object StaticButtons : HTMLObservableElement<HTMLDivElement>("div", id = "button
     private val exportBtn = Button("./icon/export.svg", "Export")
 
     init {
-
         val classList = document.body!!.classList
 
-        restoreBtn.onchange = {
+        restoreBtn.onChange = {
             classList.toggle("restore", it)
             localStorage["restore"] = it.toString()
         }
@@ -34,7 +34,7 @@ object StaticButtons : HTMLObservableElement<HTMLDivElement>("div", id = "button
             restoreBtn.value = true
         }
 
-        zoomBtn.onchange = {
+        zoomBtn.onChange = {
             classList.toggle("zoom", it)
             localStorage["zoom"] = it.toString()
         }
@@ -71,13 +71,11 @@ object StaticButtons : HTMLObservableElement<HTMLDivElement>("div", id = "button
             }
         }
 
-        append {
-            +restoreBtn
-            +zoomBtn
-            +resetBtn
-            +importBtn
-            +exportBtn
-        }
+        +restoreBtn
+        +zoomBtn
+        +resetBtn
+        +importBtn
+        +exportBtn
 
         style {
 //                "#buttons" {

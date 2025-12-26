@@ -1,6 +1,6 @@
 package org.oar.idle.model
 
-import org.oar.idle.custom.Constants.POKEMON_BREAKS
+import org.oar.idle.utils.Constants.POKEMON_BREAKS
 
 external interface PokemonDataRaw {
     val number: Int

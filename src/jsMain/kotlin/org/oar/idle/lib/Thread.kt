@@ -1,4 +1,4 @@
-package org.oar.idle.custom
+package org.oar.idle.lib
 
 import kotlin.js.Promise
 

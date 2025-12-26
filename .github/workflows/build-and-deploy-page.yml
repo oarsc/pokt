@@ -32,7 +32,7 @@ jobs:
           java-version: 1.8
 
       - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v1.0.3
+        uses: gradle/actions/wrapper-validation@v3
 
       - name: Build Kotlin/JS project
         run: ./gradlew build
@@ -42,6 +42,10 @@ jobs:
           rm -rf docs
           mkdir -p docs
           cp -r build/dist/js/productionExecutable/* docs/ || cp -r build/js/packages/idle/build/distributions/* docs/ || echo "No build output found"
+
+      - name: Remove source maps
+        run: |
+          find docs -name "*.map" -type f -delete
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

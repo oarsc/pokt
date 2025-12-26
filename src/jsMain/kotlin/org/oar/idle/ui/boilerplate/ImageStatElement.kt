@@ -1,8 +1,7 @@
 package org.oar.idle.ui.boilerplate
 
-import org.oar.idle.custom.Utils.createElement
-import org.oar.idle.custom.style
-import org.w3c.dom.HTMLImageElement
+import org.oar.idle.lib.HTMLDefinitionConstants.IMG
+import org.oar.idle.lib.style
 
 class ImageStatElement(
     source: String,
@@ -10,16 +9,13 @@ class ImageStatElement(
     totalValue: Int = 0,
 ): StatElement(initValue, totalValue, "i") {
 
-    private val imageElement = createElement<HTMLImageElement>("img")
+    private val imageElement = IMG("image")
 
     init {
-        imageElement.apply {
-            src = source
-            className = "image"
+        +IMG("image"){
+            element.src = source
         }
-        append {
-            +imageElement
-        }
+
         appendElements()
     }
 

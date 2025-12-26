@@ -1,24 +1,17 @@
 package org.oar.idle.ui
 
-import org.oar.idle.custom.HTMLObservableElement
-import org.oar.idle.custom.Utils.createElement
-import org.oar.idle.custom.style
-import org.oar.idle.ui.stats.Stats
-import org.w3c.dom.HTMLDivElement
+import org.oar.idle.lib.HTMLBlock
+import org.oar.idle.lib.HTMLDefinitionConstants.H1
+import org.oar.idle.lib.HTMLDefinitionConstants.P
+import org.oar.idle.lib.style
 import org.w3c.dom.HTMLHeadingElement
-import org.w3c.dom.HTMLParagraphElement
 
-object Header : HTMLObservableElement<HTMLHeadingElement>("h1", id = "header") {
-
-    private val subtitle = createElement<HTMLParagraphElement>("p")
+object Header : HTMLBlock<HTMLHeadingElement>(H1, id = "header") {
 
     init {
-        element.textContent = "Pokemon cleaning"
-        subtitle.id = "subheader"
-        subtitle.textContent = "If you had to build your own Pokedex, which Pokemon would you exclude?"
-
-        append {
-            +subtitle
+        -"Pokemon cleaning"
+        +P(id = "subheader") {
+            -"If you had to build your own Pokedex, which Pokemon would you exclude?"
         }
 
         style {

@@ -1,45 +1,45 @@
 package org.oar.idle.ui.boilerplate
 
-import org.oar.idle.custom.HTMLObservableElement
-import org.oar.idle.custom.Utils.createElement
-import org.oar.idle.custom.style
+import org.oar.idle.lib.HTMLBlock
+import org.oar.idle.lib.HTMLDefinitionConstants.P
+import org.oar.idle.lib.HTMLDefinitionConstants.SPAN
+import org.oar.idle.lib.style
 import org.w3c.dom.HTMLParagraphElement
-import org.w3c.dom.HTMLSpanElement
 
 abstract class StatElement(
     initValue: Int = 0,
     totalValue: Int = 0,
     subclass: String,
-): HTMLObservableElement<HTMLParagraphElement>("p", "stat $subclass") {
+): HTMLBlock<HTMLParagraphElement>(P, "stat $subclass") {
 
-    private val valueElement = createElement<HTMLSpanElement>("span")
-    private val totalElement = createElement<HTMLSpanElement>("total")
+    private val valueElement = SPAN("value")
+    private val totalElement = SPAN("total")
 
     var value: Int by renderProperty(initValue, identifier = 1)
     var total: Int by renderProperty(totalValue, identifier = 2)
 
     init {
         valueElement.apply {
-            textContent = initValue.toString()
-            className = "value"
+            -"$initValue"
         }
         totalElement.apply {
-            textContent = totalValue.toString()
-            className = "total"
+            -"$totalValue"
         }
     }
 
     protected fun appendElements() {
-        append {
-            +valueElement
-            +totalElement
-        }
+        +valueElement
+        +totalElement
     }
 
     override fun render(identifier: Int) {
         when (identifier) {
-            1 -> valueElement.textContent = "$value"
-            2 -> totalElement.textContent = "$total"
+            1 -> valueElement.apply {
+                -"$value"
+            }
+            2 -> totalElement.apply {
+                -"$total"
+            }
         }
     }
 

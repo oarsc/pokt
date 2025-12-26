@@ -2,14 +2,15 @@ package org.oar.idle.ui
 
 import kotlinx.browser.document
 import kotlinx.browser.window
-import org.oar.idle.custom.HTMLObservableElement
-import org.oar.idle.custom.style
+import org.oar.idle.lib.HTMLBlock
+import org.oar.idle.lib.HTMLDefinitionConstants.DIV
+import org.oar.idle.lib.style
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.SMOOTH
 import org.w3c.dom.ScrollBehavior
 import org.w3c.dom.ScrollToOptions
 
-class LeftScroller : HTMLObservableElement<HTMLDivElement>("div", id = "scroller") {
+class LeftScroller : HTMLBlock<HTMLDivElement>(DIV, id = "scroller") {
 
     init {
         element.apply {
